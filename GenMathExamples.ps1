@@ -1,7 +1,7 @@
 #dokolko if you want count up to 20 you need to enter 21
 $dokolko = 21
 #$pocet  how many examples you want to generate
-$pocet=90
+$pocet=462
 
 $priklady=@()
 $pomocna = 0
@@ -14,10 +14,10 @@ for ($i=0; $i -lt $dokolko; $i++) {
         $v= $i+$j
         if ($v -lt $dokolko) {
         $priklady+="$i + $j ="
-        $priklady+="$j + $i =" 
+        }
         if ($i -ge $j) {$priklady+="$i - $j ="}
-        else {$priklady+="$j - $i ="}
-        }}}
+      
+        }}
 $pocetkombinacii = $priklady.count
 
     do {
