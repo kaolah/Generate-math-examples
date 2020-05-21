@@ -70,7 +70,7 @@ Write-Host " "
 [System.Runtime.Interopservices.Marshal]::ReleaseComObject($word) | Out-Null
 Remove-Variable doc,Word
 [gc]::collect()
-[gc]::WaitForPendingFinalizers()#>
+[gc]::WaitForPendingFinalizers()
 }
 
 else {
