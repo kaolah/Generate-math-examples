@@ -20,6 +20,8 @@ for ($i=0; $i -lt $dokolko; $i++) {
         }}
 $pocetkombinacii = $priklady.count
 
+if ($pocet -le $pocetkombinacii) {
+
     do {
         $nah = Get-Random -Maximum $pocetkombinacii
          foreach ($nn in $n) {
@@ -63,9 +65,18 @@ foreach ($mm in $n) {
 Write-Host " "
 Write-host "*********** Done ****************" -ForegroundColor Red
 Write-Host " "
- pause 
+
 [System.Runtime.Interopservices.Marshal]::ReleaseComObject($doc) | Out-Null
 [System.Runtime.Interopservices.Marshal]::ReleaseComObject($word) | Out-Null
 Remove-Variable doc,Word
 [gc]::collect()
 [gc]::WaitForPendingFinalizers()#>
+}
+
+else {
+Write-host "********************************************************************************" -ForegroundColor red
+Write-host "Please lower the number of examples, and run again. It cannot be higher than number of all possible combinations." -ForegroundColor red
+Write-host "********************************************************************************" -ForegroundColor red
+    }
+
+pause
