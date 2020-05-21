@@ -75,7 +75,7 @@ Remove-Variable doc,Word
 
 else {
 Write-host "********************************************************************************" -ForegroundColor red
-Write-host "Please lower the number of examples, and run again. It cannot be higher than number of all possible combinations." -ForegroundColor red
+Write-host "Please lower the number of examples, and run again. It cannot be higher than number of all possible combinations $pocetkombinacii." -ForegroundColor red
 Write-host "********************************************************************************" -ForegroundColor red
     }
 
