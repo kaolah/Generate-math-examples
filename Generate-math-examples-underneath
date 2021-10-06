@@ -1,0 +1,79 @@
+#dokolko chceme pocitat ak do 20 treba zadat 21
+$kolko = 121 #pocet+1 treba uviest
+
+
+#generovanie prikladov do word
+
+Write-Host " "
+Write-Host "************************************************" -ForegroundColor Yellow
+Write-Host "Generujem $pocet prikladov na pocitanie" -ForegroundColor Yellow
+Write-Host "************************************************" -ForegroundColor Yellow
+Write-Host " "
+$word=new-object -ComObject "Word.Application"
+$Word.Visible = $True
+ 
+$doc = $word.documents.Add() 
+$myDoc = $word.Selection
+ 
+#$myDoc.Style="Strong" 
+#$myDoc.Font.Bold = 1
+
+#velkost fontu
+$myDoc.Font.Size = 26
+
+
+#pocet stlpcov na stranu
+$myDoc.PageSetup.TextColumns.SetCount(4)
+
+
+#vygenerovanie prikladov
+
+for ($k=1; $k -lt $kolko; $k++) {
+
+$i = Get-Random -Maximum 100 -Minimum 11
+do {
+
+$j = Get-Random -Maximum $i -Minimum 10
+}
+ 
+ until ($j -le $i)
+
+        write-host " $i"
+        $myDoc.Font.Underline=$false
+        $myDoc.TypeText(" $i")
+        $myDoc.TypeParagraph()
+        $myDoc.Font.Underline=$false
+        if ($j -lt 10) {
+            write-host " -$j"
+            $myDoc.Font.Underline=$true
+            $myDoc.TypeText(" -$j")
+            $myDoc.TypeParagraph()
+            }
+        else {
+            Write-host -$j
+            $myDoc.Font.Underline=$true
+            $myDoc.TypeText(-$j)
+            $myDoc.TypeParagraph()
+            }
+       $myDoc.TypeParagraph()
+      
+       #zarovnanie pri velkosti fontu 24
+
+      <#$delitelne5 = $k%5
+
+      if ($delitelne5 -eq "0") {
+      $myDoc.TypeParagraph()
+      }
+    #>
+    }
+
+ 
+Write-Host " "
+Write-host "*********** Hotovo ****************" -ForegroundColor Red
+Write-Host " "
+ 
+[System.Runtime.Interopservices.Marshal]::ReleaseComObject($doc) | Out-Null
+[System.Runtime.Interopservices.Marshal]::ReleaseComObject($word) | Out-Null
+Remove-Variable doc,Word
+[gc]::collect()
+[gc]::WaitForPendingFinalizers()
